@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A coding Project by Helena Vaquera</title>
+    <title>HundredNext: A Coding Project by Helena Vaquera</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,6 +12,10 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">   
    <link href="css/site.css" rel="stylesheet">
    <link href="css/prism.css" rel="stylesheet">
+     <!-- Google Fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Montserrat&display=swap" rel="stylesheet">
 
    <link rel="icon" type="image/png" href="img/self-logo/logo-crop-square.png">
    <!-- font-awesome -->
@@ -23,7 +27,7 @@
     <!-- ======== Nav Section ======== -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="img/self-logo/logo-circle.png"  class=""alt="" height="35px"> Fixed navbar</a>
+            <a class="navbar-brand" href="#"><img src="img/self-logo/logo-circle.png"  class=""alt="" height="35px">HundredNext</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -40,10 +44,10 @@
                         <a class="nav-link" aria-current="page" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/helenalvp/hundrednext">Git Repo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="helenalvp.com">About</a>
+                        <a class="nav-link" target="_blank" href="https://helenalvp.com/">About</a>
                     </li>
                 </ul>
             </div>
@@ -59,26 +63,97 @@
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            //Call Hello World
-                            function helloWorld(){
-                                alert("Hello World")
+                                                        
+                            function getValues(){
+                                // get values from the page
+                                let startValue = document.getElementById("startValue").value;
+                                let endValue =document.getElementById("endValue").value;
+                                // changes values from string to number
+                                startValue = parseInt(startValue)
+                                endValue = parseInt(endValue)
+
+                                if(Number.isInteger(startValue)&& Number.isInteger(endValue)){
+                                        numbers = generateNumbers(startValue, endValue)
+                                        displayNumbers(numbers)
+                                }else{
+                                    alert("You must enter integers")
+                                }
+                            }
+
+                            //generate numbers from startvalue to the endValue
+                            function generateNumbers(sValue, eValue){
+                                let numbers = []
+                                // we want to get all numbers from start to end
+                                for(let i = sValue; i <= eValue; i++){
+                                    numbers.push(i)
+                                }
+                                return numbers
+                            }
+
+                            //display the numbers and mark even numbers bold
+                            function displayNumbers(numbersArr){
+                                let templateRows = ""
+
+                                for(let i = 0; i < numbersArr.length; i++){
+                                    let number = numbersArr[i]
+                                    let className = "odd"
+                                    
+                                    if(number % 2 == 0){
+                                    className = "even"
+                                    }
+                                    //This does not render properly with Prism see the source.
+                                    templateRows += `<tr><td class='${className}'>${number}</td></tr>`     
+                                }
+                                document.getElementById("results").innerHTML = templateRows;
                             }
 
                         </code>
                     </pre>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 mt-2">
                     <p>
-                        This code alerts you in the browser
+                        This code uses your input to return a range of numbers back to you. If the number is even, it will be in bold.
                     </p>
                     <h5>
-                        helloWorld
+                        getValues
                     </h5>
                     <p>
-                        helloWorld is a function that displays an alert 
+                        <span class="text-primary">getValues</span> is the main function that retrieves and validates the values from the DOM.
+                        
+                    </p>
+                    <p>
+                        It changes the values from a string to an integer, and passes the values to the rest of the functions 
+                        (<span class="text-primary">generateNumbers </span>and <span class="text-primary">displayNumbers</span>) after confirming that the values are integers.
+                    </p>
+                    <h5>
+                        generateNumbers
+                    </h5>
+                    <p>
+                        <span class="text-primary">generateNumbers</span> is a function that uses the start values and end values inputted as the range to create an array of numbers that will be displayed.
+                    </p>
+                    <p>
+                        It uses a <span class="text-danger">for</span> loop to iterate through each number between the start and the end value and returns an array containing those numbers.
+                    </p>
+                    <h5>
+                        displayNumbers
+                    </h5>
+                    <p>
+                        <span class="text-primary">displayNumbers</span> retrieves the array from <span class="text-primary">generateNumbers</span> and creates the html markup to add to the DOM in another <span class="text-danger">for</span> loop.
+                    </p>
+                    <p>
+                        Inside this for loop, the function will also check to see if it is odd or even, and will give the appropriate class name that will change the style of the number acordingly.It will create a string of template rows to be added to a table in the DOM.
+                    </p>
+                    <p>
+                        After creating the string of numbers with their class name, we add the string into the DOM and have it displayed to the user.
                     </p>
                 </div>
-            </div>
+                <div class="col-12 border-top border-2">
+                    <p class="extra-info">
+                        In line 39, the addition of templateRows is not rendered correctly. 
+                        Inside the back ticks I nested the numbers inside a table row and table detail element, with a class=`${className}` to also add the css style for that number.
+                    </p>
+                </div>
+                    
         </div>
     </main>
 

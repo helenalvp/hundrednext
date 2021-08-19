@@ -6,7 +6,12 @@
 }
 
 body{
-    color: var(--dark-color)
+    color: var(--dark-color);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.arimafont{
+    font-family: 'Arima Madurai', sans-serif;
 }
 
 nav{
@@ -18,7 +23,21 @@ footer{
 }
 
 h1,h2,h3,h4,h5,h6{
-    color: var(--primary-color)
+    color: var(--primary-color);
+    
+}
+
+.even {
+    font-weight: bold;
+}
+
+.odd{
+    font-weight: 100;
+}
+.extra-info{
+    font-weight: 50;
+    color: grey;
+    font-size: 90%;
 }
 
 main>.container {
