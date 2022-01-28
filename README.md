@@ -22,9 +22,6 @@
 
   <p align="center">
 <br />
-<a href="https://github.com/helenalvp/hundrednext"><strong>Explore the docs »</strong></a>
-<br />
-<br />
 <a href="https://helenalvp-hundrednext.netlify.app">View Demo</a>
 
   </p>
